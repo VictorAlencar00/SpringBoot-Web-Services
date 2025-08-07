@@ -1,12 +1,17 @@
 package com.github.VictorAlencar00.web_services.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,6 +40,11 @@ public class User implements Serializable{
 		this.email = email;
 		this.phone = phone;
 	}
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "client")
+	public List<Order> orderList = new ArrayList<>();
+	
 	
 	public Long getId() {
 		return id;
