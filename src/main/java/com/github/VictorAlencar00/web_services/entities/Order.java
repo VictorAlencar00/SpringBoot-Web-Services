@@ -2,10 +2,11 @@ package com.github.VictorAlencar00.web_services.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.core.JsonEncoding;
 import com.github.VictorAlencar00.web_services.entities.enums.OrderStatus;
 
 import jakarta.persistence.Entity;
@@ -14,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -38,6 +40,9 @@ public class Order implements Serializable {
 		return id;
 	}
 
+	@OneToMany(mappedBy = "id.order")
+	private Set<OrderItem> items = new HashSet<>();
+
 	public Order() {
 	}
 
@@ -47,6 +52,10 @@ public class Order implements Serializable {
 		this.moment = moment;
 		this.client = client;
 		setOrderStatus(orderStatus);
+	}
+
+	public Set<OrderItem> getItems() {
+		return items;
 	}
 
 	public void setId(Long id) {

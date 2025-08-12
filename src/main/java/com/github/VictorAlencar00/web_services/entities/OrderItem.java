@@ -1,5 +1,6 @@
 package com.github.VictorAlencar00.web_services.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.github.VictorAlencar00.web_services.entities.pk.OrderItemPK;
 
 import jakarta.persistence.EmbeddedId;
@@ -26,7 +27,8 @@ public class OrderItem {
         this.price = price;
     }
 
-    public Order getOrder(Order order) {
+    @JsonIgnore
+    public Order getOrder() {
         return id.getOrder();
     }
 
