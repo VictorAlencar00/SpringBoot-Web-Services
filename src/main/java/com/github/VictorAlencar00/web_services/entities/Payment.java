@@ -40,6 +40,10 @@ public class Payment implements Serializable {
         this.moment = moment;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public Order getOrder() {
         return order;
     }
